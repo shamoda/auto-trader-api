@@ -51,10 +51,13 @@ public class UserController {
         return new ResponseEntity<>("user recode deleted successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/user/login")
-    public ResponseEntity<?> login(@RequestParam("email") String email,
-                                   @RequestParam("password") String password)
+    @GetMapping("/user/login/{email}")
+    public ResponseEntity<?> login(@PathVariable String email)
     {
-        return new ResponseEntity<>(service.login(email, password), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(service.login(email), HttpStatus.OK);
+        } catch (AutoTraderException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 }

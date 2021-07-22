@@ -39,14 +39,9 @@ public class UserService {
         repository.deleteById(id);
     }
 
-    public User login(String email, String pwd) {
-        User tempUser = repository.findById(email).get();
-        if (tempUser == null) {
-            return null;
-        } else if (!tempUser.getPassword().equals(pwd)) {
-            return null;
-        } else {
-            return tempUser;
-        }
+    public User login(String email) throws AutoTraderException {
+        return repository.findById(email).orElseThrow(
+                () -> new AutoTraderException("No such user found.")
+        );
     }
 }
