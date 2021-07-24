@@ -24,10 +24,13 @@ public class FileService {
         File file = convertMultipartFileToFile(mFile);
         if (type.equals("spare")) {
             getS3Client().putObject(PutObjectRequest.builder().bucket(SPARE_PART).key(fileName).build(), RequestBody.fromFile(file));
+            file.delete();
         } else if (type.equals("vehicle")){
             getS3Client().putObject(PutObjectRequest.builder().bucket(VEHICLE).key(fileName).build(), RequestBody.fromFile(file));
+            file.delete();
         } else if (type.equals("service")){
             getS3Client().putObject(PutObjectRequest.builder().bucket(SERVICE).key(fileName).build(), RequestBody.fromFile(file));
+            file.delete();
         } else {
             file.delete();
             log.info("Invalid file type");
