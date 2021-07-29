@@ -45,19 +45,19 @@ public class SparePartController {
         MultipartFile temImg2 = null;
         MultipartFile temImg3 = null;
         SparePart temObj = new SparePart(unixTime.toString(), email, contact, seller, location, "pending", "", date.toString(), title, price, condition, type, category, additionalInfo, null, null, null);
-        if (!img1.isEmpty()) {
+        if (img1 != null && !img1.isEmpty()) {
             String extension = FilenameUtils.getExtension(img1.getOriginalFilename());
             String img = unixTime+"-1" + "." + extension;
             temImg1 = img1;
             temObj.setImg1(img);
         }
-        if (!img2.isEmpty()) {
+        if (img2 != null && !img2.isEmpty()) {
             String extension = FilenameUtils.getExtension(img2.getOriginalFilename());
             String img = unixTime+"-2" + "." + extension;
             temImg2 = img2;
             temObj.setImg2(img);
         }
-        if (!img3.isEmpty()) {
+        if (img3 != null && !img3.isEmpty()) {
             String extension = FilenameUtils.getExtension(img3.getOriginalFilename());
             String img = unixTime+"-3" + "." + extension;
             temImg3 = img3;
@@ -87,19 +87,19 @@ public class SparePartController {
         MultipartFile temImg2 = null;
         MultipartFile temImg3 = null;
         SparePart temObj = new SparePart(id, email, contact, seller, location, "pending", "", date.toString(), title, price, condition, type, category, additionalInfo, null, null, null);
-        if (!img1.isEmpty()) {
+        if (img1 != null && !img1.isEmpty()) {
             String extension = FilenameUtils.getExtension(img1.getOriginalFilename());
             String img = id+"-1" + "." + extension;
             temImg1 = img1;
             temObj.setImg1(img);
         }
-        if (!img2.isEmpty()) {
+        if (img2 != null && !img2.isEmpty()) {
             String extension = FilenameUtils.getExtension(img2.getOriginalFilename());
             String img = id+"-2" + "." + extension;
             temImg2 = img2;
             temObj.setImg2(img);
         }
-        if (!img3.isEmpty()) {
+        if (img3 != null && !img3.isEmpty()) {
             String extension = FilenameUtils.getExtension(img3.getOriginalFilename());
             String img = id+"-3" + "." + extension;
             temImg3 = img3;

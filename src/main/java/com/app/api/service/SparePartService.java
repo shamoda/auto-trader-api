@@ -28,13 +28,13 @@ public class SparePartService {
     }
 
     public SparePart insertSparePart(SparePart sparePart, MultipartFile img1, MultipartFile img2, MultipartFile img3) {
-        if (!img1.isEmpty()) {
+        if (img1 != null && !img1.isEmpty()) {
             fileService.uploadFile(img1, sparePart.getImg1(), "spare");
         }
-        if (!img2.isEmpty()) {
+        if (img2 != null && !img2.isEmpty()) {
             fileService.uploadFile(img2, sparePart.getImg2(), "spare");
         }
-        if (!img3.isEmpty()) {
+        if (img3 != null && !img3.isEmpty()) {
             fileService.uploadFile(img3, sparePart.getImg3(), "spare");
         }
         return repository.save(sparePart);
@@ -49,13 +49,13 @@ public class SparePartService {
         if (tempObj.getImg3() != null)
             fileService.deleteFile(tempObj.getImg3(), "spare");
 
-        if (img1 != null) {
+        if (img1 != null && !img1.isEmpty()) {
             fileService.uploadFile(img1, sparePart.getImg1(), "spare");
         }
-        if (img2 != null) {
+        if (img2 != null && !img2.isEmpty()) {
             fileService.uploadFile(img2, sparePart.getImg2(), "spare");
         }
-        if (img3 != null) {
+        if (img3 != null && !img3.isEmpty()) {
             fileService.uploadFile(img3, sparePart.getImg3(), "spare");
         }
         return repository.save(sparePart);
