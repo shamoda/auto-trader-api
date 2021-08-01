@@ -1,6 +1,7 @@
 package com.app.api.controller;
 
 import com.app.api.exception.AutoTraderException;
+import com.app.api.model.SparePart;
 import com.app.api.model.User;
 import com.app.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,11 @@ public class UserController {
     @GetMapping("/user")
     public ResponseEntity<?> getAllUsers() {
         return new ResponseEntity<>(service.getAllUsers(), HttpStatus.OK);
+    }
+
+    @PostMapping("/user/filter")
+    public ResponseEntity<?> getUserByExample(@RequestBody User user) {
+        return new ResponseEntity<>(service.retriveByExample(user), HttpStatus.OK);
     }
 
     @GetMapping("/user/{id}")
