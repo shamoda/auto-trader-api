@@ -146,7 +146,7 @@ public class VehicleController {
     }
 
     @GetMapping("/vehicle/id/{id}")
-    public ResponseEntity<?> getVehicleBYId(@PathVariable String id) {
+    public ResponseEntity<?> getVehicleById(@PathVariable String id) {
         return new ResponseEntity<>(vehicleService.getVehicleById(id),HttpStatus.OK);
     }
 

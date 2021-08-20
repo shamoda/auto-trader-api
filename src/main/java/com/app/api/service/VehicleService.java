@@ -58,7 +58,7 @@ public class VehicleService {
     }
 
     public List<Vehicle> getAllPendingVehicles() {
-        return vehicleRepository.findByStatus("NotApproved");
+        return vehicleRepository.findByStatus("Pending");
     }
 
     public Vehicle updateVehicle(Vehicle vehicle,MultipartFile img1, MultipartFile img2, MultipartFile img3,
@@ -111,7 +111,7 @@ public class VehicleService {
     }
 
     public List<Vehicle> searchVehicle(Vehicle vehicle) {
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withMatcher("title", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.CONTAINING));
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withMatcher("model", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.CONTAINING));
         Example<Vehicle> example = Example.of(vehicle, matcher);
         return vehicleRepository.findAll(example);
     }
