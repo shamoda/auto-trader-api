@@ -1,8 +1,8 @@
 package com.app.api.controller;
 
 import com.app.api.exception.AutoTraderException;
-import com.app.api.model.SparePart;
 import com.app.api.model.User;
+import com.app.api.repository.UserRepository;
 import com.app.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class UserController {
     private final UserService service;
+    private final UserRepository repository;
 
     @Autowired
-    public UserController(UserService service) {
+    public UserController(UserService service, UserRepository repository) {
         this.service = service;
+        this.repository = repository;
     }
 
     @PostMapping("/user")
@@ -29,6 +31,18 @@ public class UserController {
                                         @RequestParam("location") String location)
     {
         User temUser = new User(email, name, contact, role, password, location);
+        return new ResponseEntity<>(service.insertUser(temUser), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity<?> updateUser(@RequestParam("email") String email,
+                                        @RequestParam("name") String name,
+                                        @RequestParam("role") String role,
+                                        @RequestParam("contact") String contact,
+                                        @RequestParam("location") String location)
+    {
+        User u = repository.findById(email).get();
+        User temUser = new User(email, name, contact, role, u.getPassword(), location);
         return new ResponseEntity<>(service.insertUser(temUser), HttpStatus.CREATED);
     }
 
