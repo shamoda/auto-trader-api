@@ -102,7 +102,7 @@ import static com.app.api.common.constant.ServiceConstant.*;
                         MultipartFile img1 = serviceDto.getImage1();
                         MultipartFile img2 = serviceDto.getImage2();
                         MultipartFile img3 = serviceDto.getImage3();
-          //test
+          //test1
                         if(img1 != null){
                             service.setImage1(imageUploader(img1,serviceDto.getTitle(),service.getImage1()));
                         }
