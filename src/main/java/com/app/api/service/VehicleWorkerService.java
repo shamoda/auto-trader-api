@@ -37,14 +37,14 @@ import static com.app.api.common.constant.ServiceConstant.*;
             Long unixTime = System.currentTimeMillis() / 1000L;
             services.setId("AT" +unixTime.toString());
             //upload and set image
-            if(image1 != null && !image1.isEmpty()){
+            if(image1 != null && image1.isEmpty()){
                 services.setImage1(imageUploader(image1,services.getTitle(),services.getImage1()));
             }
-            if(image2 != null && !image2.isEmpty()){
-                services.setImage2(imageUploader(image2,services.getTitle(),services.getImage2()));
+            if(image2 != null && image2.isEmpty()){
+                services.setImage2(imageUploader(image1,services.getTitle(),services.getImage2()));
             }
-            if(image3 != null && !image3.isEmpty()){
-                services.setImage3(imageUploader(image3,services.getTitle(),services.getImage3()));
+            if(image3 != null && image3.isEmpty()){
+                services.setImage3(imageUploader(image1,services.getTitle(),services.getImage3()));
             }
             return vehicleServiceRepository.save(services);
         }
@@ -70,10 +70,9 @@ import static com.app.api.common.constant.ServiceConstant.*;
         }
 
         public List<VehicleServices> retrieveByCategory(VehicleServices vehicleServices) {
-            ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withMatcher("title", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.CONTAINING));
+            ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withMatcher("category", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.CONTAINING));
             Example<VehicleServices> example = Example.of(vehicleServices,matcher);
             return  vehicleServiceRepository.findAll(example);
-
         }
 
         public String deleteService(String id) {
@@ -93,14 +92,12 @@ import static com.app.api.common.constant.ServiceConstant.*;
             return vehicleServiceRepository.findById(Id)
                     .map(service -> {
                         service.setTitle(serviceDto.getTitle());
-                        service.setSubTitle(serviceDto.getSubTitle());
-                        service.setContact(serviceDto.getContactNo());
-                        service.setDescription(serviceDto.getDescription());
-                        service.setCategory(serviceDto.getCategory());
-                        service.setLocation(serviceDto.getLocation());
-                        service.setServiceProvider(serviceDto.getServiceProvider());
-                        service.setPrice(serviceDto.getPrice());
-                        service.setStatus("pending");
+                        service.setTitle(serviceDto.getSubTitle());
+                        service.setTitle(serviceDto.getContactNo());
+                        service.setTitle(serviceDto.getDescription());
+                        service.setTitle(serviceDto.getCategory());
+                        service.setTitle(serviceDto.getLocation());
+                        service.setTitle(serviceDto.getServiceProvider());
                         //delete & upload previous images
                         MultipartFile img1 = serviceDto.getImage1();
                         MultipartFile img2 = serviceDto.getImage2();
