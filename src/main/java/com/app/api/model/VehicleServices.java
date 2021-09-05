@@ -16,8 +16,7 @@ public class VehicleServices {
     private String id;
     private String title;
     private String subTitle;
-    private String contact;
-    private String price;
+    private String contactNo;
     private String location;
     private String description;
     private String category;

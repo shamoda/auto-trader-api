@@ -19,7 +19,6 @@ public class VehicleServiceDto {
     private String description;
     private String category;
     private String location;
-    private String price;
     private String serviceProvider;
     private LocalDateTime date;
     private MultipartFile image1;
