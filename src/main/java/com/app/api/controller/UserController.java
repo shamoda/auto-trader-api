@@ -22,6 +22,8 @@ public class UserController {
         this.repository = repository;
     }
 
+
+
     @PostMapping("/user")
     public ResponseEntity<?> insertUser(@RequestParam("email") String email,
                                         @RequestParam("password") String password,
