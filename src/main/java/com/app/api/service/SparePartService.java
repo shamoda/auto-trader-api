@@ -6,6 +6,7 @@ import com.app.api.repository.SparePartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -61,8 +62,8 @@ public class SparePartService {
         return repository.save(sparePart);
     }
 
-    public List<SparePart> getAllSpareParts() {
-        return repository.findAll();
+    public List<SparePart> reportData() {
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
 
     public List<SparePart> retrieveByExample(SparePart sparePart) {
