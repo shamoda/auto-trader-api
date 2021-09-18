@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -29,5 +30,7 @@ public class VehicleServices {
  private LocalDateTime currentTime;
  private String comment;
  private String status;
+
+
 }
 
