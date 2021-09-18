@@ -6,6 +6,7 @@ import com.app.api.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -122,5 +123,9 @@ public class VehicleService {
         vehicle.setComment(comment);
         mongoTemplate.save(vehicle);
         return "Reviewed Successfully";
+    }
+
+    public List<Vehicle> reportData() {
+        return vehicleRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
 }

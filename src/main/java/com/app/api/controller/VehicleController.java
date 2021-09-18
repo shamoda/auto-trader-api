@@ -167,4 +167,9 @@ public class VehicleController {
     public ResponseEntity<?> deleteVehicle(@PathVariable String id) {
         return new ResponseEntity<>(vehicleService.deleteVehicle(id), HttpStatus.OK);
     }
+
+    @GetMapping("/vehicle/report")
+    public ResponseEntity<?> getReportData() {
+        return new ResponseEntity<>(vehicleService.reportData(), HttpStatus.OK);
+    }
 }
