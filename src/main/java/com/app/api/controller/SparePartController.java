@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
 @RestController
@@ -108,9 +107,9 @@ public class SparePartController {
         return new ResponseEntity<>(service.updateSparePart(temObj, temImg1, temImg2, temImg3), HttpStatus.CREATED);
     }
 
-    @GetMapping("/spare")
-    public ResponseEntity<?> getAllSpareParts() {
-        return new ResponseEntity<>(service.getAllSpareParts(), HttpStatus.OK);
+    @GetMapping("/spare/report")
+    public ResponseEntity<?> getReportData() {
+        return new ResponseEntity<>(service.reportData(), HttpStatus.OK);
     }
 
     @PostMapping("/spare/filter")
