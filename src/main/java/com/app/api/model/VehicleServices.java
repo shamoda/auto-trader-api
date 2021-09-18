@@ -13,20 +13,20 @@ import org.springframework.data.annotation.Id;
 @Document
 public class VehicleServices {
  //test
-   @Id
-    private String id;
-    private String title;
-    private String subTitle;
-    private String contact;
-    private String price;
-    private String location;
-    private String description;
-    private String category;
-    private String serviceProvider;
-    private String image1;
-    private String image2;
-    private String image3;
-    private LocalDateTime currentTime;
-    private String comment;
-    private String status;
+ @Id
+ private String id;
+ private String title;
+ private String subTitle;
+ private String contact;
+ private String price;
+ private String location;
+ private String description;
+ private String category;
+ private String serviceProvider;
+ private String image1;
+ private String image2;
+ private String image3;
+ private LocalDateTime currentTime;
+ private String comment;
+ private String status;
 }

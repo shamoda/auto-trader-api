@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class VehicleServiceController {
-//test1
+    //test1
     private final VehicleWorkerService vehicleWorkerService;
 
     @Autowired
@@ -59,7 +59,7 @@ public class VehicleServiceController {
     public ResponseEntity<?> reviewService(@PathVariable String id ,
                                            @RequestParam("comment") String comment,
                                            @RequestParam("status") String status
-                                           )
+    )
     {
         return new ResponseEntity<>(vehicleWorkerService.reviewService(id,status,comment),HttpStatus.OK);
     }
