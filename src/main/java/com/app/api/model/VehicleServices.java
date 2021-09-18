@@ -12,6 +12,7 @@ import org.springframework.data.annotation.Id;
 @ToString
 @Document
 public class VehicleServices {
+ //test
    @Id
     private String id;
     private String title;
