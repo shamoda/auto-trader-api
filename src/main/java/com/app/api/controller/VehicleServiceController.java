@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class VehicleServiceController {
-    //test1
+
     private final VehicleWorkerService vehicleWorkerService;
 
     @Autowired
@@ -29,6 +29,7 @@ public class VehicleServiceController {
     public ResponseEntity<?> insertService(  @RequestParam("title") String title,
                                              @RequestParam("subtitle") String subTitle,
                                              @RequestParam("contactNo") String contactNo,
+                                             @RequestParam("price")String price,
                                              @RequestParam("description") String description,
                                              @RequestParam("category") String category,
                                              @RequestParam("location") String location,
@@ -37,8 +38,10 @@ public class VehicleServiceController {
                                              @RequestParam(value = "image2",required = false )MultipartFile image2,
                                              @RequestParam(value = "image3",required = false )MultipartFile image3
     )
+
+
     {
-        VehicleServices services = new VehicleServices(null,title,subTitle,contactNo,location,description,category,serviceProvider,"f","f","f",LocalDateTime.now(),"", ServiceConstant.SERVICE_STATUS);
+        VehicleServices services = new VehicleServices(null,title,subTitle,contactNo,price,location,description,category,serviceProvider,null,null,null,LocalDateTime.now(),"", ServiceConstant.SERVICE_STATUS);
         return new ResponseEntity<>(vehicleWorkerService.insertService(services,image1,image2,image3), HttpStatus.CREATED);
     }
 
@@ -49,7 +52,7 @@ public class VehicleServiceController {
 
     @GetMapping("/services/{Id}")
     public ResponseEntity<?> getServiceById(@PathVariable String Id){
-        return new ResponseEntity<>(vehicleWorkerService.getServiceById(Id),HttpStatus.FOUND);
+        return new ResponseEntity<>(vehicleWorkerService.getServiceById(Id),HttpStatus.OK);
     }
 
     @PutMapping("/services/review/{id}")
@@ -57,26 +60,29 @@ public class VehicleServiceController {
                                            @RequestParam("comment") String comment,
                                            @RequestParam("status") String status
     )
+
     {
         return new ResponseEntity<>(vehicleWorkerService.reviewService(id,status,comment),HttpStatus.OK);
     }
 
-    @PostMapping("/services/{id}")
-    public ResponseEntity<?> updateService(@PathVariable String Id,
+    @PutMapping("/services/{id}")
+    public ResponseEntity<?> updateService(@PathVariable String id,
                                            @RequestParam("title") String title,
                                            @RequestParam("subtitle") String subTitle,
                                            @RequestParam("contactNo") String contactNo,
                                            @RequestParam("description") String description,
                                            @RequestParam("category") String category,
+                                           @RequestParam("price") String price,
                                            @RequestParam("location") String location,
                                            @RequestParam("provider") String serviceProvider,
-                                           @RequestParam(value="image1") MultipartFile image1,
+                                           @RequestParam(value="image1",required = false) MultipartFile image1,
                                            @RequestParam(value = "image2",required = false )MultipartFile image2,
                                            @RequestParam(value = "image3",required = false )MultipartFile image3
     )
     {
-        VehicleServiceDto serviceDto = new VehicleServiceDto(title,subTitle,contactNo,location,description,category,serviceProvider,LocalDateTime.now(),image1,image2,image3);
-        return new ResponseEntity<>(vehicleWorkerService.updateService(Id,serviceDto), HttpStatus.CREATED);
+
+        VehicleServiceDto serviceDto = new VehicleServiceDto(title,subTitle,contactNo,description,category,location,price,serviceProvider,LocalDateTime.now(),image1,image2,image3);
+        return new ResponseEntity<>(vehicleWorkerService.updateService(id,serviceDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/services/search")

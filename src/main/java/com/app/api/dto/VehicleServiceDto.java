@@ -16,6 +16,7 @@ public class VehicleServiceDto {
     private String title;
     private String subTitle;
     private String contactNo;
+    private String price;
     private String description;
     private String category;
     private String location;
@@ -24,4 +25,6 @@ public class VehicleServiceDto {
     private MultipartFile image1;
     private MultipartFile image2;
     private MultipartFile image3;
+
+
 }
