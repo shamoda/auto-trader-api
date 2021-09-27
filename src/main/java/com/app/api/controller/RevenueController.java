@@ -22,10 +22,11 @@ public class RevenueController {
 
     @PostMapping("/revenue")
     public ResponseEntity<?> addRevenue(@RequestParam("expense") double expense,
-                                        @RequestParam("revenue") double revenue)
+                                        @RequestParam("revenue") double revenue,
+                                        @RequestParam("date") String date)
     {
         Long id = System.currentTimeMillis() / 1000L;
-        Revenue revenueObj = new Revenue(id.toString(), LocalDate.now(), revenue, expense, revenue-expense);
+        Revenue revenueObj = new Revenue(id.toString(), LocalDate.parse(date), revenue, expense, revenue-expense);
         return new ResponseEntity<>(service.insertRevenue(revenueObj), HttpStatus.CREATED);
     }
 
