@@ -6,6 +6,7 @@ import com.app.api.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -58,7 +59,7 @@ public class VehicleService {
     }
 
     public List<Vehicle> getAllPendingVehicles() {
-        return vehicleRepository.findByStatus("NotApproved");
+        return vehicleRepository.findByStatus("Pending");
     }
 
     public Vehicle updateVehicle(Vehicle vehicle,MultipartFile img1, MultipartFile img2, MultipartFile img3,
@@ -111,7 +112,7 @@ public class VehicleService {
     }
 
     public List<Vehicle> searchVehicle(Vehicle vehicle) {
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withMatcher("title", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.CONTAINING));
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withMatcher("model", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.CONTAINING));
         Example<Vehicle> example = Example.of(vehicle, matcher);
         return vehicleRepository.findAll(example);
     }
@@ -122,5 +123,9 @@ public class VehicleService {
         vehicle.setComment(comment);
         mongoTemplate.save(vehicle);
         return "Reviewed Successfully";
+    }
+
+    public List<Vehicle> reportData() {
+        return vehicleRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
 }

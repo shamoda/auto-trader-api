@@ -10,5 +10,5 @@ import java.util.List;
 public interface VehicleRepository extends MongoRepository<Vehicle, String> {
     List<Vehicle> findByEmail(String email);
 
-    List<Vehicle> findByStatus(String NotApproved);
+    List<Vehicle> findByStatus(String Pending);
 }

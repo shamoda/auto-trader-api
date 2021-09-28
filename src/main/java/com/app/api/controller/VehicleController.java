@@ -146,7 +146,7 @@ public class VehicleController {
     }
 
     @GetMapping("/vehicle/id/{id}")
-    public ResponseEntity<?> getVehicleBYId(@PathVariable String id) {
+    public ResponseEntity<?> getVehicleById(@PathVariable String id) {
         return new ResponseEntity<>(vehicleService.getVehicleById(id),HttpStatus.OK);
     }
 
@@ -166,5 +166,10 @@ public class VehicleController {
     @DeleteMapping("/vehicle/{id}")
     public ResponseEntity<?> deleteVehicle(@PathVariable String id) {
         return new ResponseEntity<>(vehicleService.deleteVehicle(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/vehicle/report")
+    public ResponseEntity<?> getReportData() {
+        return new ResponseEntity<>(vehicleService.reportData(), HttpStatus.OK);
     }
 }
