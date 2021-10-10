@@ -8,7 +8,7 @@ Member Details:
 |Weerasinghe S.S. |IT19204680 |senath99
 |Wickramasinghe R.J.P. |IT19151052 |Jayamith
 |Perera K. U. D. |IT19168364 |UmeshDananjaya
-|
+
 
 ## Project Description
 Auto Trader is an advertising platform where people and organizations can advertise their vehicles and services for free of charge. Mainly this platform provides advertising space for 3 main categories. They are vehicles, vehicle spare parts and other services. Anyone can visit the web site to find the vehicle or the service providers they are looking for.
@@ -21,6 +21,7 @@ Database: MySQL
 
 ## Repositories
 Frontend: https://github.com/shamoda/auto-trader-web
+
 Backend: https://github.com/shamoda/auto-trader-api
 
 ## Get Started
